@@ -3,10 +3,15 @@
 This project contains simple code that shows how C token-pasting 
 and stringizing operator works.
 
+## Requirement
+You need gcc compiler to compile the code.
+
 ## How to Build The Code
 
-Simple invoke:
+Simply invoke:
+```bash
 $ make 
-in the root directory of the code in whatever shell you use that has gcc compiler.
+```
+in the root directory of the code, with whatever shell you use. 
 
 __happy coding__
