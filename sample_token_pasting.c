@@ -20,7 +20,7 @@ struct handler {
 
 #define PRINT_FUNC_NAME \
 do { \
-	printf("In function: %s \n", __func__); \
+	printf("In function: %s() \n", __func__); \
 } while (0);
 
 static inline int process_peek_request(const struct queue_item *const
