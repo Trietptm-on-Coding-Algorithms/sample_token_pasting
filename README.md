@@ -1,7 +1,7 @@
 # Token Pasting Sample Code
 
 This project contains simple code that shows how C token-pasting 
-and stringizing operator works.
+and stringizing operators work.
 
 ## Requirement
 You need gcc compiler to compile the code.
