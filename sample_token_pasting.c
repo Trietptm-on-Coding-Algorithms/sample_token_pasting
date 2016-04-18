@@ -21,14 +21,14 @@ struct handler {
 #define PRINT_FUNC_NAME \
 do { \
 	printf("In function: %s() \n", __func__); \
-} while (0);
+} while (0)
 
 static inline int process_peek_request(const struct queue_item *const
 				      peek_req,
 				      struct handler *p)
 {
 	/** Algorithm A ...  */
-	PRINT_FUNC_NAME
+	PRINT_FUNC_NAME;
 	return 0;
 }
 
@@ -37,7 +37,7 @@ static inline int process_peek_reply(const struct queue_item *const
 				    struct handler *p)
 {
 	/** Algorithm B ...  */
-	PRINT_FUNC_NAME
+	PRINT_FUNC_NAME;
 	return 0;
 }
 
@@ -51,7 +51,7 @@ static inline int process_modification_request(const struct queue_item *const
 
 	/** TODO: Notify egress_port thread to consume the MOD request */
 
-	PRINT_FUNC_NAME
+	PRINT_FUNC_NAME;
 
 	return 0;/** Success */
 
@@ -67,7 +67,7 @@ static inline int process_modification_reply(const struct queue_item *const
 
 	/** TODO: Notify ingress_port thread to consume the MOD reply */
 
-	PRINT_FUNC_NAME
+	PRINT_FUNC_NAME;
 
 	return 0;/** Success */
 
@@ -76,7 +76,7 @@ static inline int process_modification_reply(const struct queue_item *const
 }
 
 #define PROCESS_DEQUEUED_ITEM(MESSAGE, TYPE) \
-static inline int process_dequeued_##MESSAGE(const struct queue_item *const MESSAGE,\
+static inline int process_dequeued_##MESSAGE##_item(const struct queue_item *const MESSAGE,\
 					    struct handler *p) \
 { \
 	assert((MESSAGE != NULL) && (p != NULL)); \
@@ -84,7 +84,7 @@ static inline int process_dequeued_##MESSAGE(const struct queue_item *const MESS
 	assert((MESSAGE->type == PEEK_##TYPE) || \
 	       (MESSAGE->type == MOD_##TYPE)); \
 	\
-	PRINT_FUNC_NAME \
+	PRINT_FUNC_NAME; \
 	\
 	if (MESSAGE->type == PEEK_##TYPE) { \
 		printf("Processing PEEK " #MESSAGE "\n"); \
@@ -120,11 +120,11 @@ int main (int argc, char * argv[])
 	rep_item[1].type = MOD_REPLY_ITEM;
 
 	for (i = 0; i < 2; i++) {
-		process_dequeued_request(&req_item[i], &h);
+		process_dequeued_request_item(&req_item[i], &h);
 	}
 
 	for (i = 0; i < 2; i++) {
-		process_dequeued_reply(&rep_item[i], &h);
+		process_dequeued_reply_item(&rep_item[i], &h);
 	}
 
 	return 0;
